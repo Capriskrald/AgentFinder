@@ -6,18 +6,21 @@
         xmlns:local="clr-namespace:AgentFinder2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:Agents  />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Content="Id" 
                Grid.Row="0"
@@ -38,38 +41,31 @@
         <TextBox Name="IdBox" 
                  Grid.Row="0"
                  Grid.Column="1"
-                 Margin="5,5,5,0"/>
+                 Margin="5,5,5,0"
+                 Text="{Binding Path=ID}"/>
         <TextBox Name="CodeNameBox" 
                  Grid.Row="1"
                  Grid.Column="1"
-                 Margin="5,5,5,0"/>
+                 Margin="5,5,5,0"
+                 MinWidth="300"
+                 Text="{Binding Path=CodeName}"/>
         <TextBox Name="SpecialityBox" 
                  Grid.Row="2"
                  Grid.Column="1"
-                 Margin="5,5,5,0"/>
+                 Margin="5,5,5,0"
+                 Text="{Binding Path=Speciality}"/>
         <TextBox Name="AssignmentBox" 
                  Grid.Row="3" Grid.RowSpan="2"
                  Grid.Column="1"
-                 Margin="5,5,5,30"/>
-        <TextBlock Name="IdTxtBlock"
-                   Text="{Binding ElementName=IdBox, Path=Text}"
-                   Grid.Row="0"
-                   Grid.Column="2"
-                   Margin="5,5,5,0"/>
-        <TextBlock Name="CodeNameTxtBlock"
-                   Text="{Binding ElementName=CodeNameBox, Path=Text}"
-                   Grid.Row="1"
-                   Grid.Column="2"
-                   Margin="5,5,5,0"/>
-        <TextBlock Name="SpecialityTxtBlock"
-                   Text="{Binding ElementName=SpecialityBox, Path=Text}"
-                   Grid.Row="2"
-                   Grid.Column="2"
-                   Margin="5,5,5,0"/>
-        <TextBlock Name="AssignmentTxtBlock"
-                   Text="{Binding ElementName=AssignmentBox, Path=Text}"
-                   Grid.Row="3"
-                   Grid.Column="2"
-                   Margin="5,5,5,0"/>
+                 Margin="5,5,5,5"
+                 Text="{Binding Path=Assignment}"/>
+        <ListBox Name="AgentListBox"
+                 Grid.Column="2"
+                 Grid.Row="0" Grid.RowSpan="5"
+                 Margin="5,5,5,5" 
+                 ItemsSource="{Binding PresentationTraceSources.TraceLevel=High}"
+                 DisplayMemberPath="CodeName"
+                 IsSynchronizedWithCurrentItem="True">
+        </ListBox>
     </Grid>
 </Window>
